@@ -28,9 +28,7 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
-body {
-	line-height: 1;
-}
+
 ol, ul {
 	list-style: none;
 }
@@ -47,19 +45,57 @@ table {
 	border-spacing: 0;
 }
 /** end reset css**/
-body {
-	max-width: 1140px;
-	margin:auto;
-	font-family: 'Work Sans' ;
-	font-size: 14px;
+
+html, body {
+  height: 100%;
 }
-header {
-	display: flex;
-	justify-content: space-between;
-	margin: 50px 0
+
+html {
+  overflow-y: scroll; /* всегда показывать полосу, даже если не нужна */
 }
+
+
 section {
 	margin: 50px 0
+}
+
+
+#introduction {
+    max-width: 940px;
+    margin: 100px auto;  /* отступ сверху и снизу секции */
+    display: flex;
+    align-items: flex-start;      /* картинка и текст выровнены по верхней линии */
+    gap: 80px;                    /* расстояние между картинкой и текстом */
+}
+
+/* Левая колонка — картинка */
+#introduction figure {
+    flex: 1;
+}
+
+#introduction img {
+    width: 430px;   /* увеличенная ширина картинки */
+    height: auto;
+    display: block; /* убирает лишние "дырки" под картинкой */
+}
+
+/* Правая колонка — текст */
+#introduction article {
+    max-width: 404px;
+    padding-top: 10px;      /* опускаем текст чуть ниже верхней линии */
+    padding-bottom: 10px;   /* отступ снизу для воздуха */
+}
+
+/* Заголовок внутри текста */
+#introduction h2 {
+    margin-bottom: 1em;
+}
+
+/* Абзацы текста */
+#introduction article p {
+    font-size: 14px; 
+   
+    margin-bottom: 18px;/* равный красивый отступ между абзацами */
 }
 
 h1{
@@ -72,10 +108,12 @@ h1{
 }
 
 h1 > span {
-	font-family: 'Work Sans';
-	font-size:10px;
-	letter-spacing: 0.1em;
-;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 400;
+    font-size: 10px;         /* ← самый правильный размер */
+    letter-spacing: 0.15em;  /* расстояние между буквами */
+    text-transform: uppercase;
+    margin-top: 4px;
 }
 
 h2{
@@ -85,62 +123,103 @@ h2{
 	color: #1D6154
 }
 nav ul {
-	display: flex;
-	align-items: center;
-	list-style-type: none;
-
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 30px;                 /* расстояние между пунктами меню */
 }
+
+/* пункты меню */
 nav li {
-	padding: 0 10px;
-	font-size: 1.2em;
+    padding: 0;                /* убрали старый padding */
+    font-size: 15px;           /* аккуратный размер, как в макете */
+    font-family: 'Work Sans', sans-serif;
 }
 
-li:hover {
-	color: #B1663C;
+nav a.active {
+  font-weight: 700;
+  
 }
-#introduction {
-	display: flex;
-	align-items: center;
-}
-#introduction figure {
-	flex: 1
-}
-#introduction img {
-	display: block;
-	margin: auto;
-	width: 80%;
+/* ссылки в меню (login) */
+nav a {
+    text-decoration: none;
+    color: #000000;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 15px;
 }
 
-#introduction article {
-	flex: 1
-}
-#introduction h2 {
-	margin-bottom: 1em;
+
+
+
+
+/* иконка Instagram */
+nav li img {
+    width: 18px;      /* размер как в макете */
+    height: 18px;
+    display: block;
+    opacity: 1;       /* без прозрачности */
+    transition: none; /* отключаем любую анимацию */
 }
 
-#introduction p {
-	margin-bottom: 0.5em;
-}
-#portfolio h2 {
-	text-align: center;
-	margin-bottom: 1em;
-}
+
+
+
+
+
+
+
+
+
+
+
 .gallery {
-	width: 100%;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-column-gap: 20px;
-	grid-row-gap: 20px;
+    width: 100%;
+    max-width: 940px;   /* ширина блока → точно как Figma */
+    margin: 0 auto;     /* ставит по центру */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
 }
 
 .gallery img {
 	width: 100%;
+}
 
+.filters {
+  text-align: center;
+  margin-bottom: 30px;
 }
+
+.filters button {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: #1D6154;
+  background-color: #fff;
+  border: 2px solid #1D6154;
+  border-radius: 30px;
+  padding: 10px 20px;
+  margin: 0px 10px 13px 5px; 
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filters button:hover,
+.filters button.active {
+  background-color: #1D6154;
+  color: white;
+}
+
 #contact {
-	width: 50%;
+	width: 35%;
 margin: auto;
+font-size: 14px;
 }
+
+#contact p {
+    font-size: 15px;
+}
+
 #contact > * {
 	text-align: center;
 
@@ -163,7 +242,10 @@ margin: auto;
 }
 #contact label {
 	margin: 2em 0 1em 0;
+    font-size: 13px;     /* размер такой же */
+    font-weight: 450;    /* делает жирным */
 }
+
 #contact textarea {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
@@ -186,3 +268,467 @@ footer nav ul {
 	margin: 2em
 }
 
+/*/////////////////////////// login
+
+
+
+/* --- PAGE LOGIN --- */
+#login-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 100px; /* distance depuis le nav */
+}
+
+.login-title {
+  font-family: 'Syne';
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 36px;
+  color: #1D6154;
+  margin-bottom: 70px; /* espace avant le champ e-mail */
+  text-align: center;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.login-form label {
+  font-family: 'Work Sans';
+  font-weight: 500;
+  font-size: 14px;
+  color: #3D3D3D;
+}
+
+.login-form input {
+  width: 379px;
+  height: 51px;
+  border: none;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  padding: 0 15px;
+  font-family: 'Work Sans';
+  font-size: 14px;
+}
+
+.btn-login {
+  width: 179px;
+  height: 36px;
+  background: #1D6154;
+  border: none;
+  border-radius: 60px;
+  font-family: 'Syne';
+  font-weight: 700;
+  font-size: 14px;
+  color: #FFFFFF;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.forgot-password {
+  font-family: 'Work Sans';
+  font-size: 14px;
+  color: #3D3D3D;
+  text-decoration: underline;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* --- Footer toujours en bas --- */
+body {
+  max-width: 1140px;
+  margin: 0 auto;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  display: flex;          /* выстраиваем страницу вертикально */
+  flex-direction: column; /* header → main → footer */
+}
+
+.site-container {
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  background-color: #fdfff4; /* ← твой бежевый */
+}
+
+main {
+  flex: 1; /* чтобы footer был в самом низу */
+  width: 100%;
+}
+
+/* ===== Панель режима редактирования (точный стиль проекта OC) ===== */
+.edition-banner {
+    width: 100%;
+    background-color: #000000; /* черный фон */
+    color: white; /* белый текст */
+    padding: 16px 0; /* высота панели */
+    display: none; /* скрыто по умолчанию */
+    justify-content: center; /* центрируем */
+    align-items: center;
+    gap: 12px; /* расстояние между иконкой и текстом */
+    font-size: 14px;
+    font-family: "Work Sans", sans-serif;
+    position: fixed; /* фиксируем сверху */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* всегда поверх всего */
+}
+
+.edition-banner {
+    max-width: 1140px;     /* ширина как у body */
+    margin: 0 auto;        /* центрируем */
+    background-color: #000;
+    color: white;
+    padding: 16px 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    font-family: "Work Sans", sans-serif;
+    position: fixed;
+    top: 0;
+    left: 50%;             /* ставим в середину экрана */
+    transform: translateX(-50%); /* выравниваем по центру */
+    z-index: 1000;
+    
+}
+
+body.with-banner {
+    padding-top: 40px;
+}
+
+
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;   /* чтобы h1 и меню были по одной линии */
+    margin: 50px 30px;
+}
+
+
+
+
+/* ===== Блок "Mes Projets + modifier" на одной линии ===== */
+.edit-container {
+    display: none;              /* скрыт по умолчанию */
+    display: flex;              /* ДЕЛАЕТ ЭЛЕМЕНТЫ В РЯД */
+    flex-direction: row;        /* горизонтальное расположение */
+    justify-content: center;    /* центрируем по горизонтали */
+    align-items: center;        /* выравниваем по вертикали */
+    gap: 20px;                  /* расстояние между текстом и кнопкой */
+    margin-bottom: 30px;
+}
+
+/* ===== Кнопка modifier ===== */
+.edit-btn {
+    display: flex;              /* иконка + текст в одну линию */
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: #000000;
+    font-size: 16px;
+}
+
+.edit-container h2 {
+    margin: 0;
+    padding: 0;
+    line-height: 1;  /* выравниваем заголовок */
+}
+
+.edit-btn {
+    margin-top: -4px;  /* ЧУТЬ ПОДНИМАЕМ кнопку modifier */
+}
+
+
+/* Заголовок + кнопка modifier */
+
+
+/* Заголовок + кнопка modifier на одной линии */
+.portfolio-title {
+    display: flex;
+    justify-content: center;   /* центрируем оба элемента */
+    align-items: center;       /* выравниваем по вертикали */
+    gap: 20px;                /* расстояние между заголовком и кнопкой */
+    margin-bottom: 30px;
+}
+
+/* Заголовок Mes projets */
+
+.portfolio-title {
+    margin-bottom: 40px; /* увеличили отступ */
+}
+
+.portfolio-title h2 {
+    margin: 0 0 10px 0;                /* убираем лишний отступ */
+    text-align: center;
+}
+
+/* Кнопка modifier */
+.edit-btn {
+    display: flex;            /* чтобы иконка и текст были рядом */
+    align-items: center;
+    gap: 8px;
+    font-family: "Work Sans", sans-serif;
+    font-size: 14px;
+    color: #020202;
+    cursor: pointer;
+}
+
+
+
+
+/* ========== MODALE (Figma-perfect) ========== */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal {
+  width: 630px;
+  height: 530px;
+  max-width: 95%;
+  background: #FFFFFF;
+  border-radius: 10px;
+  padding: 30px 40px 35px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ===== HEADER ===== */
+.modal-header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  
+}
+
+.modal-header h3 {
+  font-family: "Work Sans";
+  font-size: 26px;
+  font-weight: 400;
+}
+
+.modal-back,
+.modal-close {
+  position: absolute;
+  top: 0;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal-back { left: 0; }
+.modal-close { right: 0; }
+
+/* ===== Внутренний контент модалки ===== */
+.modal-page {
+  width: 100%;
+  max-width: 500px;        /* ← РАЗМЕР СЕКЦИИ как в Figma */
+  margin: 0 auto;          /* центрируем */
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ========== GALERIE PHOTO ========== */
+
+.modal-gallery {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);  /* ← ВАЖНО: 5 колонок */
+  gap: 10px;                               /* можно 8–10, чтобы влезало красиво */
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.modal-gallery figure {
+  position: relative;
+}
+
+.modal-gallery img {
+  width: 100%;
+  height: 105px;
+  object-fit: cover;
+}
+
+.modal-delete-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 17px;
+  height: 17px;
+  border-radius: 2px;
+  border: none;
+  background: #000;
+  color: #fff;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Divider + кнопка */
+.modal-footer {
+  width: 100%;
+  border-top: 1px solid #B3B3B3;
+  padding-top: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ========== AJOUT PHOTO ========== */
+
+.modal-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* голубой блок */
+.modal-file-field {
+  width: 100%;
+  background: #E8F1F7;
+  border-radius: 3px;
+    margin-top: 20px;  
+  display: flex;
+  justify-content: center;
+}
+
+/* фиксированная зона */
+.modal-image-preview-container {
+  width: 100%;
+  height: 140px;
+  max-width: 380px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* placeholder — строго центр, Figma */
+#modal-image-placeholder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  width: 100%;
+  height: 100%;
+}
+
+#modal-image-placeholder i {
+  font-size: 50px;
+  color: #B9C5CC;
+}
+
+.modal-file-btn {
+  padding: 10px 20px;
+  background: #CBD6DC;
+  color: #306685;
+  border-radius: 50px;
+  font-family: "Work Sans";
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#modal-image-placeholder p {
+  font-size: 10px;
+  color: #444;
+}
+
+#modal-image-preview {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  display: none;
+}
+
+/* поля */
+.modal-form label {
+  font-size: 14px;
+  font-family: "Work Sans";
+  margin-top: 5px;
+}
+
+.modal-form input,
+.modal-form select {
+  height: 51px;
+  border: none;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.09);
+  padding: 0 12px;
+  font-size: 14px;
+}
+
+/* ошибка */
+.modal-error-message {
+  color: #A30000;
+  font-size: 13px;
+}
+
+/* нижняя линия для формы */
+.modal-form-footer {
+  width: 100%;
+  border-top: 1px solid #B3B3B3;
+  padding-top: 24px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+/* кнопки */
+.modal-primary-btn {
+  width: 237px;
+  height: 36px;
+  border-radius: 60px;
+  border: none;
+  font-family: "Syne";
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* зелёная */
+#modal-gallery-page .modal-primary-btn {
+  background: #1D6154;
+  color: #fff;
+}
+
+/* серая */
+#modal-form-page .modal-primary-btn {
+  background: #A7A7A7;
+  color: #fff;
+}
+
+/* запрет скролла */
+body.modal-open {
+  overflow: hidden;
+}

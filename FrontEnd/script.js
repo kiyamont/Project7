@@ -413,7 +413,7 @@ function initModal() {
         travaux.push(newWork);
         // Обновляем главную галерею
         afficherTravaux(travaux);
-        // Обновляем модальную галерею
+        // Обновляем модальную галерею для блога
         renderModalGallery();
 
         // Сброс формы

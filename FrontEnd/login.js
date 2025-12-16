@@ -2,6 +2,9 @@ const form = document.querySelector(".login-form");
 
 // 🟢 ДОБАВЛЕНО: ссылка на элемент <p class="error-message">
 const errorMessage = document.querySelector(".error-message");
+window.addEventListener("pageshow", () => {
+  errorMessage.style.display = "none";
+}); 
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -25,6 +28,7 @@ form.addEventListener("submit", async (e) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
     });
+    console.log(response);
 
     // 🔴 ЗАМЕНЕНО ВСЁ управление ошибками
     if (!response.ok) {
@@ -41,15 +45,19 @@ form.addEventListener("submit", async (e) => {
     }
 
     const data = await response.json();
+    console.log(data);
+       console.log(data.userId);
+console.log(data.token);
 
     localStorage.setItem("token", data.token);
     localStorage.setItem("userId", data.userId);
+ 
 
     // 🟢 На всякий случай скрыть ошибку
     errorMessage.style.display = "none";
 
     window.location.href = "index.html";
-
+ 
   } catch (error) {
     console.error("Erreur lors de la connexion :", error);
 
